@@ -33,7 +33,7 @@ class HotelRepository implements HotelRepositoryInterface
 
     public function delete(int $id)
     {
-        return $this->hotel->detroy($id);
+        return $this->hotel->destroy($id);
     }
 
     public function find(int $id)
