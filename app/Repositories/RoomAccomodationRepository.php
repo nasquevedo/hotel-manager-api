@@ -19,8 +19,6 @@ class RoomAccomodationRepository implements RoomAccomodationRepositoryInterface
 
     public function findByRoomId(int $id)
     {
-        $accomodations = $this->roomAccomodation->with(['room', 'accomodation'])->get()->where('room_id', '=', $id);
-
-        return $accomodations;
+        return $this->roomAccomodation->with(['room', 'accomodation'])->where('room_id', '=', $id)->get();
     }
 }

@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\HotelRoomRepositoryInterface;
+use App\Services\ValidatorServiceInterface;
 use Illuminate\Http\Request;
 
 class HotelRoomController extends Controller
 {
     private $hotelRoomRepository;
 
-    public function __construct(HotelRoomRepositoryInterface $hotelRoomRepository)
+    private $validatorService;
+
+    public function __construct(
+        HotelRoomRepositoryInterface $hotelRoomRepository,
+        ValidatorServiceInterface $validatorService
+    )
     {
         $this->hotelRoomRepository = $hotelRoomRepository;
+        $this->validatorService = $validatorService;
     }
 
     /**
@@ -33,6 +40,13 @@ class HotelRoomController extends Controller
      */
     public function store(Request $request)
     {
+        $validRooms = $this->validatorService->validateAvailableRooms($request->request->all(), null);
+        if (!$validRooms) {
+            return response()->json([
+                "message" => "Ha llegado al limite de cuartos para este hotel"
+            ]);
+        }
+        
         $hotelRoom = $this->hotelRoomRepository->create($request->request->all());
 
         return response()->json([
@@ -59,6 +73,13 @@ class HotelRoomController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validRooms = $this->validatorService->validateAvailableRooms($request->request->all(), $id);
+        if (!$validRooms) {
+            return response()->json([
+                "message" => "Ha llegado al limite de cuartos para este hotel"
+            ]);
+        }
+        
         $hotelRoom = $this->hotelRoomRepository->update($request->request->all(), $id);
 
         return response()->json([

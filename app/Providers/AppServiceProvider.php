@@ -40,6 +40,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\HotelRoomRepositoryInterface',
             'App\Repositories\HotelRoomRepository'
         );
+
+        $this->app->bind(
+            'App\Services\ValidatorServiceInterface',
+            'App\Services\ValidatorService'
+        );
     }
 
     /**

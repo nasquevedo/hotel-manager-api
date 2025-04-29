@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\HotelRoom;
 
+
 class HotelRoomRepository implements HotelRoomRepositoryInterface
 {
     protected $hotelRoom;
@@ -39,5 +40,18 @@ class HotelRoomRepository implements HotelRoomRepositoryInterface
     public function find(int $id) 
     {
         return $this->hotelRoom->with(['RoomAccomodation'])->get()->where('id', '=', $id);
+    }
+
+    public function getHotelRoomSum(int $hotelId, ?int $id)
+    {
+        if (null !== $id) {
+            return $this->hotelRoom
+                ->where('hotel_id', '=', $hotelId)
+                ->where('id', '!=', $id)
+                ->groupBy('hotel_id')
+                ->sum('number_rooms');
+        }
+
+        return $this->hotelRoom->where('hotel_id', '=', $hotelId)->groupBy('hotel_id')->sum('number_rooms');
     }
 }
