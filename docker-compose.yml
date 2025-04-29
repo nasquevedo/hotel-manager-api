@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      APP_ENV: local
+      APP_DEBUG: true
+      APP_KEY: base64:dummy
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_DATABASE: hotel-manager
+      DB_USERNAME: postgres
+      DB_PASSWORD: brianna26
