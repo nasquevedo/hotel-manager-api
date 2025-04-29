@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\HotelRoomRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Repositories\HotelRepositoryInterface;
 
-class HotelController extends Controller
+class HotelRoomController extends Controller
 {
-    private $hotelRepository;
+    private $hotelRoomRepository;
 
-    public function __construct(HotelRepositoryInterface $hotelRepository)
+    public function __construct(HotelRoomRepositoryInterface $hotelRoomRepository)
     {
-        $this->hotelRepository = $hotelRepository;
+        $this->hotelRoomRepository = $hotelRoomRepository;
     }
 
     /**
@@ -20,11 +20,11 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotels = $this->hotelRepository->all();
+        $hotelRooms = $this->hotelRoomRepository->all();
 
         return response()->json([
             "message" => "success",
-            "hotels" => $hotels
+            "hotel_rooms" => $hotelRooms 
         ]);
     }
 
@@ -33,11 +33,11 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        $hotel = $this->hotelRepository->create($request->request->all());
+        $hotelRoom = $this->hotelRoomRepository->create($request->request->all());
 
         return response()->json([
-            "message" => 'success',
-            "hotel" => $hotel
+            "message" => "success",
+            "hotel_room" => $hotelRoom
         ]);
     }
 
@@ -46,11 +46,11 @@ class HotelController extends Controller
      */
     public function show(string $id)
     {
-        $hotel = $this->hotelRepository->find($id);
+        $hotelRoom = $this->hotelRoomRepository->find($id);
 
         return response()->json([
             "message" => "success",
-            "hotel" => $hotel
+            "hotel_room" => $hotelRoom
         ]);
     }
 
@@ -59,11 +59,11 @@ class HotelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $hotel = $this->hotelRepository->update($request->request->all(), $id);
+        $hotelRoom = $this->hotelRoomRepository->update($request->request->all(), $id);
 
         return response()->json([
             "message" => "success",
-            "hotel" => $hotel
+            "hotel_room" => $hotelRoom
         ]);
     }
 
@@ -72,7 +72,7 @@ class HotelController extends Controller
      */
     public function destroy(string $id)
     {
-        $hotel = $this->hotelRepository->delete($id);
+        $this->hotelRoomRepository->delete($id);
 
         return response()->json([
             "message" => "success"

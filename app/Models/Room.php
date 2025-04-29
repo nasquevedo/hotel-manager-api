@@ -12,4 +12,9 @@ class Room extends Model
     protected $fillable = [
         "name"
     ];
+
+    public function RoomAccomodations()
+    {
+        return $this->hasMany('App\Models\RoomAccomodation');
+    }
 }
