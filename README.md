@@ -8,8 +8,8 @@ Acontinuación se encuentra la configuración del api para su despliegue localme
 
 ## requerimientos
 - php8.2
-- composer
-- postgres
+- composer2.8.8
+- postgres17
 
 ## setting up
 
