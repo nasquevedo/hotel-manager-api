@@ -4,8 +4,7 @@ Hotel Manager es un REST API para la gestion de hoteles, permite unicamente la c
 
 Acontinuación se encuentra la configuración el api localmente.
 
-### Nota
-En las carpetas db y collection se encuentran el dump de la base de datos y la colección de postman
+**Nota: En las carpetas db y collection se encuentran el dump de la base de datos y la colección de postman**
 
 ## requerimientos
 - php8.2
@@ -107,3 +106,10 @@ Actualiza la acomodacion por hotel por medio de su id
 
 Elimina la relacion de la acomodacion con el hotel por medio de su id
 [DELETE] http://localhost:8000/api/v1/hotel/rooms/delete/{id}
+
+## Testing
+Correr el siguiente comando para correr todos los test
+
+```sh
+php artisan test
+```
