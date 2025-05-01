@@ -13,9 +13,24 @@ services:
     environment:
       APP_ENV: local
       APP_DEBUG: true
-      APP_KEY: base64:dummy
-      DB_HOST: 127.0.0.1
+      APP_KEY: base64:xWn1uTrhiLwPvZQWhSFAqUlDbraQqwY4ZdmIeSeZR2g=
+      DB_HOST: laravel_db
       DB_PORT: 5432
       DB_DATABASE: hotel-manager
       DB_USERNAME: postgres
       DB_PASSWORD: secret
+
+  db:
+    image: postgres:17
+    container_name: laravel_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: hotel-manager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
