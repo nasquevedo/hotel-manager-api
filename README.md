@@ -1,15 +1,15 @@
 # Hotel Manager
 
-Hotel Manager es un REST API para la gestion de hoteles, permite unicamente la creación de hoteles, acomodaciones de habitaciones dada una información inicial para las ciudades, habitaciones y acomodaciones.
+Este proyecto es un REST Api diseñado en Laravel con el fin de gestionar hoteles a travez de una interface exponiendo diversos endpoints los cuales son consumidos por una aplicación en ReactJs, en esta versión únicamente se pueden crear hoteles y asignarles habitaciones con sus respectivas acomodaciones, todo lo demás se agrega como data inicial (ciudades, habitaciones, acomodaciones y acomodaciones por habitación)
 
-Acontinuación se encuentra la configuración el api localmente.
+Acontinuación se encuentra la configuración del api para su despliegue localmente.
 
 **Nota: En las carpetas db y collection se encuentran el dump de la base de datos y la colección de postman**
 
 ## requerimientos
 - php8.2
-- composer
-- postgres
+- composer2.8.8
+- postgres17
 
 ## setting up
 
